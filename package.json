@@ -2,9 +2,9 @@
   "name": "node_socket_server",
   "version": "1.0.0",
   "description": "",
-  "main": "socket.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node socket",
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
