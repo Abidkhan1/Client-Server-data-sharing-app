@@ -25,14 +25,12 @@ const server = http.createServer((req, res)=>{
     //     res.end(JSON.stringify(users));
     // }
 
-    let filePath = path.join(__dirname,'public','index.html')
+    let filePath = path.join(
+        __dirname,
+        'public',
+        req.url === '/' ? 'index.html' : req.url
+         )
 
-        //  let filePath = path.join(
-        //   __dirname,
-        //   'public',
-        //   req.url === '/' ? 'index.html' : req.url
-        //    )
-        
          let extname = path.extname(filePath);
 
          let contentType = 'text/html';
@@ -58,7 +56,6 @@ const server = http.createServer((req, res)=>{
          fs.readFile(filePath, (err,content)=>{
              if(err){
                 if(err.code === 'ENOENT'){
-                  console.log('filePath:',filePath)
                     console.log(err.code);
                     //page not found load 404
                     fs.readFile(path.join(__dirname,'public','404.html'), (err, content)=>{
@@ -97,6 +94,6 @@ const io = require("socket.io")(server);
 });
 //Socket io code
 
-const PORT = process.env.PORT || 3000 ;
+const PORT = process.env.PORT || 5000 ;
 
 server.listen(PORT , console.log(`server runing on ${PORT}`));
